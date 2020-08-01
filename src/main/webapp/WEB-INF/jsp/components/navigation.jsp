@@ -1,15 +1,19 @@
-<nav>
-    <div class="ui secondary  menu" style="height: 1rem;" dir="ltr">
-        <a href="/" class="item ${requestScope['javax.servlet.forward.request_uri'] eq '/' ? 'active' : ''}">
-            Home
+<nav lang=fa-ir>
+
+    <div class="ui secondary  menu" style="height: 1rem;">
+        <a href="/" class="item ${requestScope['javax.servlet.forward.request_uri'] eq '/' ? 'active' : ''}" >
+            صفحه اصلی
         </a>
-        <a href="/employees" class="item ${requestScope['javax.servlet.forward.request_uri'] eq '/employees' ? 'active' : ''}">
+        <a href="/employees"
+           class="item ${requestScope['javax.servlet.forward.request_uri'] eq '/employees' ? 'active' : ''}">
             کارمندان
         </a>
-        <a href="/emails" class="item ${requestScope['javax.servlet.forward.request_uri'] eq '/emails' ? 'active' : ''}">
+        <a href="/emails"
+           class="item ${requestScope['javax.servlet.forward.request_uri'] eq '/emails' ? 'active' : ''}">
             ایمیل ها
         </a>
-        <a href="/leaves" class="item ${requestScope['javax.servlet.forward.request_uri'] eq '/leaves' ? 'active' : ''}">
+        <a href="/leaves"
+           class="item ${requestScope['javax.servlet.forward.request_uri'] eq '/leaves' ? 'active' : ''}">
             مرخصی ها
         </a>
 
@@ -23,7 +27,7 @@
 
                 </ul>
             </div>
-            <a href="#" class="item">خروج</a>
+            <a href="#" class="item" lang="fa">خروج</a>
         </div>
     </div>
 </nav>

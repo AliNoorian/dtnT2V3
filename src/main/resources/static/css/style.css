@@ -1,12 +1,8 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400&display=swap');
 
-
-@font-face {
-
-    font-family: 'iransans';
-    src: url('../fonts/iransans.ttf');
-
-;
+html, body {
+    font-family: Inter, sans-serif !important;
 }
 
 a {
