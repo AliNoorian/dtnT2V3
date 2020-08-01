@@ -21,12 +21,12 @@ public class LeaveServiceImpl implements LeaveService {
     }
 
     @Override
-    public List<Leave> findAll() {
+    public List<Leave> getAllLeaves() {
         return leaveRepository.findAll();
     }
 
     @Override
-    public Leave findById(long id) {
+    public Leave getLeave(long id) {
         Optional<Leave> result = leaveRepository.findById(id);
 
         Leave leave;
@@ -42,12 +42,12 @@ public class LeaveServiceImpl implements LeaveService {
     }
 
     @Override
-    public void save(Leave leave) {
+    public void addLeave(Leave leave) {
         leaveRepository.save(leave);
     }
 
     @Override
-    public void deleteById(long id) {
+    public void removeLeave(long id) {
         leaveRepository.deleteById(id);
     }
 }

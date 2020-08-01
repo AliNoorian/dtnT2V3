@@ -75,7 +75,7 @@ public class ManagerController {
     @GetMapping("/delete")
     public String delete(@RequestParam("employeeId") int theId) {
 
-        // delete the employee
+
         employeeService.removeEmployee(theId);
 
         return "redirect:employees";

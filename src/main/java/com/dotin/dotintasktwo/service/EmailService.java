@@ -1,7 +1,6 @@
 package com.dotin.dotintasktwo.service;
 
 import com.dotin.dotintasktwo.model.Email;
-import com.dotin.dotintasktwo.model.Leave;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,9 +10,9 @@ public interface EmailService {
 
     List<Email> getAllEmails();
 
-    Leave getEmail(long id);
+    Email getEmail(long id);
 
-    void addEmail(Leave leave);
+    void addEmail(Email email);
 
 }
 

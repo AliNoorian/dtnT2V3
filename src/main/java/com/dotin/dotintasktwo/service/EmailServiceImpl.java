@@ -23,12 +23,12 @@ public class EmailServiceImpl implements EmailService {
 
 
     @Override
-    public List<Email> findAll() {
+    public List<Email> getAllEmails() {
         return emailRepository.findAll();
     }
 
     @Override
-    public Email findById(long id) {
+    public Email getEmail(long id) {
         Optional<Email> result = emailRepository.findById(id);
 
         Email email;
@@ -44,13 +44,10 @@ public class EmailServiceImpl implements EmailService {
     }
 
     @Override
-    public void save(Email email) {
+    public void addEmail(Email email) {
 
         emailRepository.save(email);
     }
 
-    @Override
-    public void deleteById(long id) {
-        emailRepository.deleteById(id);
-    }
+
 }
