@@ -6,67 +6,58 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.dotin.dotintasktwo.dao.EmployeeRepository;
-import com.dotin.dotintasktwo.entity.Employee;
+import com.dotin.dotintasktwo.repository.EmployeeRepository;
+import com.dotin.dotintasktwo.model.Employee;
+import org.springframework.transaction.annotation.Transactional;
+
 
 @Service
+@Transactional
 public class EmployeeServiceImpl implements EmployeeService {
 
-	private EmployeeRepository employeeRepository;
-	
+	private final EmployeeRepository employeeRepository;
+
 	@Autowired
-	public EmployeeServiceImpl(EmployeeRepository theEmployeeRepository) {
-		employeeRepository = theEmployeeRepository;
-	}
-	
-	@Override
-	public List<Employee> findAll() {
-		return employeeRepository.findAllByOrderByLastNameAsc();
+	public EmployeeServiceImpl(EmployeeRepository employeeRepository) {
+		this.employeeRepository = employeeRepository;
 	}
 
 	@Override
-	public Employee findById(int theId) {
-		Optional<Employee> result = employeeRepository.findById(theId);
-		
-		Employee theEmployee = null;
-		
+	public List<Employee> getAllEmployees() {
+		return employeeRepository.findAll();
+	}
+
+	@Override
+	public Employee getEmployee(long id) {
+		Optional<Employee> result = employeeRepository.findById(id);
+
+		Employee theEmployee;
+
 		if (result.isPresent()) {
 			theEmployee = result.get();
 		}
 		else {
 			// we didn't find the employee
-			throw new RuntimeException("Did not find employee id - " + theId);
+			throw new RuntimeException("Did not find employee id - " + id);
 		}
-		
+
 		return theEmployee;
 	}
 
 	@Override
-	public void save(Employee theEmployee) {
-		employeeRepository.save(theEmployee);
+	public void addEmployee(Employee Employee) {
+		employeeRepository.save(Employee);
 	}
 
 	@Override
-	public void deleteById(int theId) {
-		employeeRepository.deleteById(theId);
+	public void removeEmployee(long id) {
+		employeeRepository.deleteById(id);
 	}
 
-	@Override
-	public List<Employee> searchBy(String theName) {
-		
-		List<Employee> results = null;
-		
-		if (theName != null && (theName.trim().length() > 0)) {
-			results = employeeRepository.findByFirstNameContainsOrLastNameContainsAllIgnoreCase(theName, theName);
-		}
-		else {
-			results = findAll();
-		}
-		
-		return results;
-	}
+
 
 }
+
 
 
 

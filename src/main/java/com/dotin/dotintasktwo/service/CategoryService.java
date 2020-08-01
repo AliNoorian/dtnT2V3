@@ -1,17 +1,21 @@
 package com.dotin.dotintasktwo.service;
 
 
-import com.dotin.dotintasktwo.entity.Category;
+import com.dotin.dotintasktwo.model.Category;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+
+@Service
 public interface CategoryService {
 
-     List<Category> findAll();
 
-     Category findById(int Id);
+    List<Category> getAllCategory();
 
-     void save(Category category);
+    Category getCategory(long id);
 
-     void deleteById(int Id);
+    void addCategory(Category category);
+
+    void removeCategory(long id);
 }

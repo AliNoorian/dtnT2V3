@@ -1,14 +1,17 @@
 package com.dotin.dotintasktwo.service;
 
-import com.dotin.dotintasktwo.dao.EmailRepository;
-import com.dotin.dotintasktwo.entity.Email;
+
+import com.dotin.dotintasktwo.model.Email;
+import com.dotin.dotintasktwo.repository.EmailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class EmailServiceImpl implements EmailService {
 
     private final EmailRepository emailRepository;
@@ -18,23 +21,23 @@ public class EmailServiceImpl implements EmailService {
         this.emailRepository = emailRepository;
     }
 
+
     @Override
     public List<Email> findAll() {
         return emailRepository.findAll();
     }
 
     @Override
-    public Email findById(int Id) {
-        Optional<Email> result = emailRepository.findById(Id);
+    public Email findById(long id) {
+        Optional<Email> result = emailRepository.findById(id);
 
         Email email;
 
         if (result.isPresent()) {
             email = result.get();
-        }
-        else {
-            // we didn't find the employee
-            throw new RuntimeException("Did not find email id - " + Id);
+        } else {
+            // we didn't find the email
+            throw new RuntimeException("Did not find email id - " + id);
         }
 
         return email;
@@ -42,11 +45,12 @@ public class EmailServiceImpl implements EmailService {
 
     @Override
     public void save(Email email) {
+
         emailRepository.save(email);
     }
 
     @Override
-    public void deleteById(int Id) {
-        emailRepository.deleteById(Id);
+    public void deleteById(long id) {
+        emailRepository.deleteById(id);
     }
 }

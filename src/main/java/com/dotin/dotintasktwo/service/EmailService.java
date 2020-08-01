@@ -1,17 +1,20 @@
 package com.dotin.dotintasktwo.service;
 
-
-import com.dotin.dotintasktwo.entity.Email;
+import com.dotin.dotintasktwo.model.Email;
+import com.dotin.dotintasktwo.model.Leave;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public interface EmailService {
 
-     List<Email> findAll();
+    List<Email> getAllEmails();
 
-     Email findById(int Id);
+    Leave getEmail(long id);
 
-     void save(Email email);
+    void addEmail(Leave leave);
 
-     void deleteById(int Id);
 }
+
+

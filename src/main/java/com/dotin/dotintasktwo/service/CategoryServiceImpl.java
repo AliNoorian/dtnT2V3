@@ -1,16 +1,17 @@
 package com.dotin.dotintasktwo.service;
 
-import com.dotin.dotintasktwo.dao.CategoryRepository;
-import com.dotin.dotintasktwo.entity.Category;
+import com.dotin.dotintasktwo.model.Category;
+import com.dotin.dotintasktwo.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class CategoryServiceImpl implements CategoryService {
-
 
     private final CategoryRepository categoryRepository;
 
@@ -19,34 +20,36 @@ public class CategoryServiceImpl implements CategoryService {
         this.categoryRepository = categoryRepository;
     }
 
+
     @Override
-    public List<Category> findAll() {
+    public List<Category> getAllCategory() {
         return categoryRepository.findAll();
     }
 
     @Override
-    public Category findById(int Id) {
-        Optional<Category> result = categoryRepository.findById(Id);
+    public Category getCategory(long id) {
+        Optional<Category> result = categoryRepository.findById(id);
 
         Category category;
 
         if (result.isPresent()) {
             category = result.get();
         } else {
-            // we didn't find the employee
-            throw new RuntimeException("Did not find category id - " + Id);
+            // we didn't find the category
+            throw new RuntimeException("Did not find category id - " + id);
         }
 
         return category;
     }
 
+
     @Override
-    public void save(Category category) {
+    public void addCategory(Category category) {
         categoryRepository.save(category);
     }
 
     @Override
-    public void deleteById(int Id) {
-        categoryRepository.deleteById(Id);
+    public void removeCategory(long id) {
+        categoryRepository.deleteById(id);
     }
 }

@@ -1,21 +1,21 @@
 package com.dotin.dotintasktwo.service;
 
 
-import com.dotin.dotintasktwo.entity.Employee;
-import com.dotin.dotintasktwo.entity.Leave;
+import com.dotin.dotintasktwo.model.Leave;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public interface LeaveService {
 
-     List<Leave> findAll();
+    List<Leave> getAllLeaves();
 
-     Leave findById(int Id);
+    Leave getLeave(long id);
 
-     void save(Leave leave);
+    void addLeave(Leave leave);
 
-     void deleteById(int Id);
+    void removeLeave(long id);
 
 
-    List<Leave> searchBy(String theName);
 }

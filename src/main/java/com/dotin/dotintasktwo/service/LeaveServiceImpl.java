@@ -1,14 +1,16 @@
 package com.dotin.dotintasktwo.service;
 
-import com.dotin.dotintasktwo.dao.LeaveRepository;
-import com.dotin.dotintasktwo.entity.Leave;
+import com.dotin.dotintasktwo.model.Leave;
+import com.dotin.dotintasktwo.repository.LeaveRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class LeaveServiceImpl implements LeaveService {
 
     private final LeaveRepository leaveRepository;
@@ -24,17 +26,16 @@ public class LeaveServiceImpl implements LeaveService {
     }
 
     @Override
-    public Leave findById(int Id) {
-        Optional<Leave> result = leaveRepository.findById(Id);
+    public Leave findById(long id) {
+        Optional<Leave> result = leaveRepository.findById(id);
 
         Leave leave;
 
         if (result.isPresent()) {
             leave = result.get();
-        }
-        else {
-            // we didn't find the employee
-            throw new RuntimeException("Did not find leave id - " + Id);
+        } else {
+            // we didn't find the leave
+            throw new RuntimeException("Did not find leave id - " + id);
         }
 
         return leave;
@@ -46,7 +47,7 @@ public class LeaveServiceImpl implements LeaveService {
     }
 
     @Override
-    public void deleteById(int Id) {
-        leaveRepository.deleteById(Id);
+    public void deleteById(long id) {
+        leaveRepository.deleteById(id);
     }
 }
