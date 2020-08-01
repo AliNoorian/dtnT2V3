@@ -1,0 +1,49 @@
+
+
+
+@font-face {
+
+    font-family: 'iransans';
+    src: url('../fonts/iransans.ttf');
+
+;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    outline: none !important;
+}
+
+.cardContainer {
+    display: inline-block !important;
+    margin: 1rem;
+}
+
+.bodyContainer {
+    margin: 1rem;
+}
+
+.mainBody {
+    margin: 2rem;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.formContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
