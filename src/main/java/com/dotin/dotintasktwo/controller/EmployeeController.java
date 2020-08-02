@@ -17,7 +17,7 @@ import java.util.List;
 
 
 @Controller
-@RequestMapping("/employees")
+@RequestMapping(value={"/employees"}, produces = "text/plain;charset=UTF-8")
 public class EmployeeController {
 
     @Autowired

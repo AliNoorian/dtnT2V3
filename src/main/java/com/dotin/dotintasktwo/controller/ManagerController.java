@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
-@RequestMapping("/manager")
+@RequestMapping(value = {"/manager"}, produces = "text/plain;charset=UTF-8")
 public class ManagerController {
 
     private final EmployeeService employeeService;
@@ -22,7 +22,6 @@ public class ManagerController {
     public ManagerController(EmployeeService theEmployeeService) {
         employeeService = theEmployeeService;
     }
-
 
 
     @GetMapping("/list")
@@ -81,7 +80,6 @@ public class ManagerController {
         return "redirect:employees";
 
     }
-
 
 
 }

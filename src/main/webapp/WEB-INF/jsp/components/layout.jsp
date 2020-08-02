@@ -1,11 +1,11 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"  %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title>Title</title>
-    <%@include file="stylesheets.jsp"%>
+    <%@include file="stylesheets.jsp" %>
 </head>
 <body>
 

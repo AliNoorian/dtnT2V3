@@ -1,4 +1,5 @@
-<nav lang=fa-ir>
+<%@ page contentType="text/html;charset=UTF-8"  pageEncoding="UTF-8"%>
+<nav lang=fa-ir >
 
     <div class="ui secondary  menu" style="height: 1rem;">
         <a href="/" class="item ${requestScope['javax.servlet.forward.request_uri'] eq '/' ? 'active' : ''}" >
