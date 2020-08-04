@@ -2,8 +2,6 @@ package com.dotin.dotintasktwo.model;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -13,8 +11,7 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "t_employee")
-@Getter
-@Setter
+@Data
 public class Employee extends Parent implements Serializable {
 
 
@@ -52,6 +49,8 @@ public class Employee extends Parent implements Serializable {
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
     private List<Leave> leaves;
 
+//    @Enumerated(EnumType.STRING)
+//    @Type(type="EmployeeRole")
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "c_role_id")
     private CategoryElement employeeRole;

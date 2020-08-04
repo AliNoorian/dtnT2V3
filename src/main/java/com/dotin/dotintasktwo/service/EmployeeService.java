@@ -7,14 +7,14 @@ import com.dotin.dotintasktwo.model.Employee;
 
 public interface EmployeeService {
 
-	 List<Employee> getAllEmployees();
+    List<Employee> getAllEmployees();
 
-	 Employee getEmployee(long id);
+    Employee getEmployee(long id);
 
-	 void addEmployee(Employee employee);
+    void addEmployee(Employee employee);
 
-	 void removeEmployee(long id);
+    void removeEmployee(long id);
 
+    List<Employee> searchBy(String theName);
 
-	
 }

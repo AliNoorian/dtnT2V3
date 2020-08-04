@@ -4,7 +4,6 @@ import com.ibm.icu.text.DateFormat;
 import com.ibm.icu.util.Calendar;
 import com.ibm.icu.util.ULocale;
 
-
 public class DateFormatUtility {
 
     public static String formatIntoWords() {

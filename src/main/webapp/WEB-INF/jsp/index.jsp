@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Language" content="fa">
-    <title>Title</title>
+    <title>سیستم مدریت کارمندان</title>
     <%@include file="components/stylesheets.jsp" %>
 </head>
 <body>

@@ -1,15 +1,13 @@
 package com.dotin.dotintasktwo.model;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @MappedSuperclass
-@Getter
-@Setter
-public class Parent {
+@Data
+public class Parent implements Serializable {
 
     @Id
     @Column(name = "c_id")

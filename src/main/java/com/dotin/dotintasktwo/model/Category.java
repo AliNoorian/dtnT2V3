@@ -3,20 +3,22 @@ package com.dotin.dotintasktwo.model;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+
+
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "t_category")
-@Getter
-@Setter
-public class Category extends Parent {
+@Data
+public class Category extends Parent implements Serializable {
 
 
+//    @Enumerated(EnumType.STRING)
+//    @Type(type="CategoryName")
     @Column(name = "c_category_name")
     private String categoryName;
 

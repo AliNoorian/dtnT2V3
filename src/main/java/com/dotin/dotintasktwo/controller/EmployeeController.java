@@ -1,64 +1,103 @@
 package com.dotin.dotintasktwo.controller;
 
-import com.dotin.dotintasktwo.model.Email;
+import java.util.List;
+
 import com.dotin.dotintasktwo.model.Employee;
-import com.dotin.dotintasktwo.model.Leave;
-import com.dotin.dotintasktwo.service.EmailService;
 import com.dotin.dotintasktwo.service.EmployeeService;
-import com.dotin.dotintasktwo.service.LeaveService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
-@RequestMapping(value={"/employees"}, produces = "text/plain;charset=UTF-8")
+@RequestMapping("/employees")
 public class EmployeeController {
 
-    @Autowired
-    private EmployeeService employeeService;
-    @Autowired
-    private EmailService emailService;
-    @Autowired
-    private LeaveService leaveService;
+    private final EmployeeService employeeService;
 
-    @GetMapping("")
-    public String getAllEmployees(Model model) {
+    public EmployeeController(EmployeeService theEmployeeService) {
+        employeeService = theEmployeeService;
+    }
 
-        List<Employee> employees = employeeService.getAllEmployees();
-        model.addAttribute("employees", employees);
+    // add mapping for "/list"
+
+    @GetMapping("/list")
+    public String listEmployees(Model theModel) {
+
+        // get employees from db
+        List<Employee> theEmployees = employeeService.getAllEmployees();
+
+        // add to the spring model
+        theModel.addAttribute("employees", theEmployees);
 
         return "employees";
     }
 
-    @GetMapping("/{id}")
-    public String getEmployee(@PathVariable Long id, Model model) {
-        Employee employee = employeeService.getEmployee(id);
-        List<Leave> leaveList = leaveService.getAllLeaves();
-        List<Email> emailList = emailService.getAllEmails();
+    @GetMapping("/showFormForAdd")
+    public String showFormForAdd(Model theModel) {
+
+        // create model attribute to bind form data
+        Employee theEmployee = new Employee();
+
+        theModel.addAttribute("employee", theEmployee);
+
+        return "/add/employee";
+    }
+
+    @GetMapping("/showFormForUpdate")
+    public String showFormForUpdate(@RequestParam("employeeId") int theId,
+                                    Model theModel) {
+
+        // get the employee from the service
+        Employee theEmployee = employeeService.getEmployee(theId);
+
+        // set employee as a model attribute to pre-populate the form
+        theModel.addAttribute("employee", theEmployee);
+
+        // send over to our form
+        return "/add/employee";
+    }
 
 
-        model.addAttribute("leaves", leaveList);
-        model.addAttribute("emails", emailList);
-        model.addAttribute("employee", employee);
+    @PostMapping("/save")
+    public String saveEmployee(@ModelAttribute("employee") Employee theEmployee) {
+
+        // save the employee
+        employeeService.addEmployee(theEmployee);
+
+        // use a redirect to prevent duplicate submissions
+        return "redirect:employees";
+    }
 
 
+    @GetMapping("/delete")
+    public String delete(@RequestParam("employeeId") int theId) {
+
+        // delete the employee
+        employeeService.removeEmployee(theId);
+
+        // redirect to /employees/list
+        return "redirect:employees";
+
+    }
+
+    @GetMapping("/search")
+    public String delete(@RequestParam("employeeName") String theName,
+                         Model theModel) {
+
+        // delete the employee
+        List<Employee> theEmployees = employeeService.searchBy(theName);
+
+        // add to the spring model
+        theModel.addAttribute("employees", theEmployees);
+
+        // send to /employees/list
         return "employees";
+
     }
-
-    @GetMapping("{id}/history")
-    public String getEmployeeHistory(@PathVariable Long id, Model model) {
-        List<Employee> employees = employeeService.getAllEmployees();
-        model.addAttribute("employee", employeeService.getEmployee(id));
-        model.addAttribute("employees", employees);
-
-        return "/history";
-    }
-
 
 }

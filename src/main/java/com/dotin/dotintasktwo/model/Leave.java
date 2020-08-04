@@ -2,19 +2,17 @@ package com.dotin.dotintasktwo.model;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.io.Serializable;
 
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "t_leave")
-@Getter
-@Setter
-public class Leave extends Parent {
+@Data
+public class Leave extends Parent implements Serializable {
 
 
     @NotBlank(message = "Leave Subject is required")
@@ -37,10 +35,14 @@ public class Leave extends Parent {
     @JoinColumn(name = "c_request_employee_id")
     private Employee employee;
 
+ //   @Enumerated(EnumType.STRING)
+ //   @Type(type="LeaveType")
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "c_leave_type")
     private CategoryElement leaveType;
 
+//    @Enumerated(EnumType.STRING)
+//    @Type(type="LeaveStatus")
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "c_leave_status")
     private CategoryElement leaveStatus;
